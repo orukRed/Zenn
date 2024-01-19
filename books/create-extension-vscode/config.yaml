@@ -1,0 +1,22 @@
+title: "Let's create a syntax extension for vscode!"
+summary: '独自言語のvscodeの拡張機能を作ってみよう。'
+topics: ['vscode', 'extension', 'tyranoscript']
+published: false
+price: 0 # 有料の場合200〜5000
+# 本に含めるチャプターを順番に並べましょう
+chapters:
+  - この本について
+  - vscode拡張機能について
+  - 拡張機能の作成
+  - 構文ハイライト
+  - 構文解析器（パーサー）を用意する
+  - アウトライン
+  - ツールチップ
+  - コード補完
+  - 診断機能
+  - 定義ジャンプ
+  - コマンド/ショートカット/の実装
+  # 以下、実装していない機能
+  - リファクタリング
+  - テスト
+  - デバッグ
