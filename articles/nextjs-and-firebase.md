@@ -30,7 +30,7 @@ published: true
 
 ログインして画像を投稿・表示するだけの簡単なものです。
 これでも割と躓いたので……
-![画像投稿アプリ](/images/articles/Next.js-and-firebase/app.png)
+![画像投稿アプリ](/images/articles/nextjs-and-firebase/app.png)
 
 ## 設計方針
 
@@ -50,7 +50,7 @@ Next14.0.4なので以下のものが使えますが、今回使うのはApp rou
 Next.js13.4からApp Routerが使えるようになりました。
 今までは`pages`ディレクトリにフォルダを作成すると、そのファイル名がURLになっていましたが、
 App Routerでは`app`ディレクトリにフォルダを作成します。
-![ディレクトリ](/images/articles/Next.js-and-firebase/approuter.png)
+![ディレクトリ](/images/articles/nextjs-and-firebase/approuter.png)
 `pages`でのルーティングと違いがほぼない（ように感じた）ので、今回はApp Routerを使います。
 
 ### サーバーサイドコンポーネント、 Server Actions、 Route Handlersを使わない理由
@@ -100,7 +100,7 @@ export function initFirebase() {
 ## ファイル構造
 
 Next.jsのファイル構造は以下のようになっています。
-![alt](/images/articles/Next.js-and-firebase/explo.png)
+![alt](/images/articles/nextjs-and-firebase/explo.png)
 
 ### app
 
