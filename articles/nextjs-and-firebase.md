@@ -94,8 +94,8 @@ export function initFirebase() {
 ```
 
 任意のタイミングで使えるように/components/firebase.js等に置いておくとよいです。
+ちなみにadmin API KEYではないので公開してもOKです。
 
-ちなみにGithub Actionsとかでデプロイする場合は、API KEYを環境変数に設定しておく必要があります。
 
 ## ファイル構造
 
@@ -509,8 +509,31 @@ firebase deploy
 ## GithubActionsでの自動デプロイ
 
 エラー出ちゃったので注意。
-私はclient.jsにAPI KEY設定してgithubにで.gitignoreでプッシュしないようにしていたのですが、当然GithubActionsでのデプロイ時にはAPI KEYがないのでエラーになりました。
-環境変数を設定しておく必要があります。
+~~私はclient.jsにAPI KEY設定してgithubにで.gitignoreでプッシュしないようにしていたのですが、当然GithubActionsでのデプロイ時にはAPI KEYがないのでエラーになりました。~~
+API KEYはadminの方ではない場合公開してＯＫみたいです。
+その場合、以下二つを実行してください。
+
+1. プロジェクト名→Actions→General→Workflow permissions→Read and write permissionsに変更
+![alt](/images/articles/nextjs-and-firebase/actions.png)
+2. firebase-hosting-merge.ymlとfirebase-hosting-pull-request.ymlに以下を追記
+
+```yml
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci && npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_IMAGE_THROWER }}'
+          channelId: live
+          projectId: hoge
+        #↓こいつ
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
+```
 
 ## 今後のTODO
 
@@ -519,7 +542,6 @@ firebase deploy
 
 - [ ] ユーザーごとのマイページ追加
 - [ ] 削除機能の追加（論理削除）
-- [ ] Github actions通るようにしておく（環境変数追加）
 - [ ] エミュレータを使いローカルでの動作検証をもっと自由にする
 - [ ] ログイン方法をメアドとパスワード以外から増やしたり二段階認証を追加する
 - [ ] テストコード作る
